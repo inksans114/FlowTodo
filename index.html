@@ -2297,13 +2297,7 @@
                 <mdui-switch slot="end-icon" id="switchAutoStart"></mdui-switch>
               </mdui-list-item>
               <mdui-divider inset></mdui-divider>
-              <mdui-list-item id="btnDesktopWidgets" style="cursor: pointer; padding: 8px 16px;">
-                <mdui-icon slot="icon" name="widgets" style="color: rgb(var(--mdui-color-tertiary));"></mdui-icon>
-                <div style="font-weight: 500;">桌面小组件</div>
-                <div slot="description" style="opacity: 0.7;">固定显示当前待办、番茄钟、天气时间和喝水提醒</div>
-                <mdui-icon slot="end-icon" name="open_in_new" style="color: rgb(var(--mdui-color-tertiary));"></mdui-icon>
-              </mdui-list-item>
-            </mdui-list>
+             
           </div>
           <h3 style="margin: 0 0 16px 8px; font-weight: 600;">
             <mdui-icon name="save" style="vertical-align: middle; margin-right: 8px;"></mdui-icon>数据储存
@@ -4406,7 +4400,7 @@
                 if (!result.ok) throw new Error(result.error || 'open failed');
                 showToast(result.visible ? '桌面小组件已打开' : '桌面小组件已隐藏');
               } catch (e) {
-                showToast('桌面小组件打开失败');
+                showToast('桌面小组件出现故障');
               }
             });
           } else {

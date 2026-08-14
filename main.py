@@ -75,16 +75,17 @@ class DesktopWidgetsProcess:
         Args:
             data_dir: 数据目录路径,传递给子进程
         """
+        """
         self.data_dir = data_dir
         self.process = None
-        self.script_path = os.path.join(os.path.dirname(__file__), "desktop_widgets_fluent.py")
+        self.script_path = os.path.join(os.path.dirname(__file__), "desktop_widgets_fluent.py")"""
 
     def isVisible(self):
         return self.process is not None and self.process.poll() is None
 
     def show_hub(self):
         """启动桌面小组件子进程(若尚未运行)."""
-        if self.isVisible():
+        """if self.isVisible():
             return
         if not os.path.isfile(self.script_path):
             raise FileNotFoundError(self.script_path)
@@ -94,7 +95,7 @@ class DesktopWidgetsProcess:
             cwd=os.path.dirname(__file__),
             creationflags=creationflags,
         )
-
+"""
     def hide(self):
         self.shutdown()
 
