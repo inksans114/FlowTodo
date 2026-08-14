@@ -1,0 +1,1 @@
+{"version":3,"file":"localized-controller.d.ts","sourceRoot":"","sources":["../src/internal/localized-controller.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAIH,OAAO,KAAK,EAAqB,sBAAsB,EAAC,MAAM,KAAK,CAAC;AAgCpE;;;;;;;;;;;;;;;;;;;;;;;GAuBG;AACH,QAAA,MAAM,wBAAwB,SAAU,sBAAsB,SACZ,CAAC;AAEnD,eAAO,MAAM,uBAAuB,EAAE,OAAO,wBAAwB,GAAG;IACtE,4BAA4B,CAAC,EAAE,KAAK,CAAC;CACX,CAAC"}

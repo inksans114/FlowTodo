@@ -1,0 +1,50 @@
+<div class="figure-wrapper">
+  <figure
+    class="styled-example menu"
+    aria-label="A green, filled button with the text Themed menu. Interact with the button to open the green themed menu with 0 border-radius."
+    style="padding-block: 16px"
+  >
+    <style>
+      .styled-example {
+        background-color: #f4fbfa;
+      }
+      .styled-example md-filled-button {
+        --md-sys-color-primary: #006a6a;
+        --md-sys-color-on-primary: #ffffff;
+      }
+      .styled-example.menu md-menu {
+        --md-menu-container-color: #f4fbfa;
+        --md-menu-container-shape: 0px;
+        --md-sys-color-on-surface: #161d1d;
+        --md-sys-typescale-body-large-font: system-ui;
+      }
+      .styled-example.menu md-menu-item {
+        border-radius: 28px;
+      }
+      .styled-example.menu md-menu-item::part(focus-ring) {
+        border-radius: 28px;
+      }
+    </style>
+    <span style="position: relative">
+      <md-filled-button id="theming-anchor">Themed menu</md-filled-button>
+      <md-menu id="theming-menu" anchor="theming-anchor">
+        <md-menu-item>
+          <div slot="headline">Apple</div>
+        </md-menu-item>
+        <md-menu-item>
+          <div slot="headline">Banana</div>
+        </md-menu-item>
+        <md-menu-item>
+          <div slot="headline">Cucumber</div>
+        </md-menu-item>
+      </md-menu>
+    </span>
+    <script type="module">
+      const anchorEl = document.body.querySelector("#theming-anchor");
+      const menuEl = document.body.querySelector("#theming-menu");
+      anchorEl.addEventListener("click", () => {
+        menuEl.show();
+      });
+    </script>
+  </figure>
+</div>

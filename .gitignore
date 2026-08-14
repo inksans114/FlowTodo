@@ -1,10 +1,6 @@
-__pycache__/
-node_modules/
-dist_nuitka/
-vendor/
-material-web-2.4.1/
-site-assets/
+﻿__pycache__/
 *.log
 .vscode/
 *.pyc
 *.pyo
+dist_nuitka/serve.dist/qt6webenginecore.dll

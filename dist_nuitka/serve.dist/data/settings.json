@@ -1,0 +1,22 @@
+{
+  "theme": "auto",
+  "focusDuration": 25,
+  "autoNext": false,
+  "dataPath": "d:\\Cheems_Todo\\PycharmProjects\\pythonProject\\Cheems_Todo\\data",
+  "dailyWallpaperSource": "bing",
+  "bgMode": "daily",
+  "bgColor": "surface",
+  "bgTransparent": false,
+  "dailySeedSuffix": "",
+  "localBgDataUrl": "",
+  "customBgColor": "#1C1B1F",
+  "customBgPalette": [],
+  "aiBaseUrl": "https://api.openai.com/v1",
+  "aiModel": "gpt-4o-mini",
+  "aiApiKey": "",
+  "aiTemperature": 0.7000000000000001,
+  "aiTimeout": 240,
+  "aiAutoApply": true,
+  "aiReplaceOnApply": true,
+  "autoStart": false
+}

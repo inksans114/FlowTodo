@@ -1,0 +1,30 @@
+/**
+ * 表单控件的值
+ */
+export type FormControlValue = string | number | boolean | (string | number | boolean)[];
+/**
+ * 表单控件接口，所有表单控件组件都要实现该接口
+ */
+export interface FormControl extends Element {
+    name: string;
+    value: FormControlValue;
+    checked?: boolean;
+    disabled: boolean;
+    defaultValue?: FormControlValue;
+    defaultChecked?: boolean;
+    form?: string;
+    checkValidity: () => boolean;
+    reportValidity: () => boolean;
+    setCustomValidity: (message: string) => void;
+}
+/**
+ * 使用该 WeakMap 来存储指定表单中所有的 mdui 表单控件
+ * 在每个表单控件的 hostConnected 中添加、hostDisconnected 中移除对应表单的 mdui 表单控件，
+ * 然后在 getFormControls 方法中就能获取到表单中所有的 mdui 表单控件
+ */
+export declare const formCollections: WeakMap<HTMLFormElement, Set<FormControl>>;
+/**
+ * 获取表单中的所有表单控件，包含原生和 mdui 表单控件
+ * 原生的 `HTMLFormElement.elements` 仅返回原生表单控件，不包含 mdui 表单控件
+ */
+export declare const getFormControls: (form: HTMLFormElement) => Array<Element | FormControl>;

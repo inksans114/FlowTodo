@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="新前缀">
+    <file>AK-LV_勋章.png</file>
+  </qresource>
+</RCC>

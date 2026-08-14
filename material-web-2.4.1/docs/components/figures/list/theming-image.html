@@ -1,0 +1,35 @@
+<div class="figure-wrapper">
+  <figure
+    class="styled-example image"
+    aria-label="Image of a list and image list items of cats with a different theme applied"
+    style="padding-block: 16px"
+  >
+    <style>
+      .styled-example.image md-list {
+        --md-list-container-color: #f4fbfa;
+        --md-list-item-label-text-color: #161d1d;
+        --md-list-item-supporting-text-color: #3f4948;
+        --md-list-item-trailing-supporting-text-color: #3f4948;
+      }
+      .styled-example.image md-list img {
+        height: 50px;
+        width: 100px;
+        border-radius: 25px;
+      }
+    </style>
+    <md-list>
+      <md-list-item>
+        <div slot="headline">Wide Cat</div>
+        <img loading="lazy" slot="start" src="https://placekitten.com/200/100">
+      </md-list-item>
+      <md-list-item>
+        <div slot="headline">Round kitty cat</div>
+        <img loading="lazy" slot="start" src="https://placekitten.com/202/101">
+      </md-list-item>
+      <md-list-item>
+        <div slot="headline">Softe cate</div>
+        <img loading="lazy" slot="start" src="https://placekitten.com/212/106">
+      </md-list-item>
+    </md-list>
+  </figure>
+</div>

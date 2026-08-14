@@ -1,0 +1,380 @@
+@mdui-root-font-size: 16;
+
+@mdui-breakpoint-xs: 0px;
+@mdui-breakpoint-xs-max: 599.98px;
+@mdui-breakpoint-sm: 600px;
+@mdui-breakpoint-sm-max: 839.98px;
+@mdui-breakpoint-md: 840px;
+@mdui-breakpoint-md-max: 1079.98px;
+@mdui-breakpoint-lg: 1080px;
+@mdui-breakpoint-lg-max: 1439.98px;
+@mdui-breakpoint-xl: 1440px;
+@mdui-breakpoint-xl-max: 1919.98px;
+@mdui-breakpoint-xxl: 1920px;
+
+// px 值转 rem
+//
+// 输入: .px(font-size: 24)
+// 输出: font-size: 1.5rem
+.px(@name, @px) {
+  @{name}: unit((@px / @mdui-root-font-size), rem);
+}
+
+// 系统变量
+//
+// 输入: .sys(font-size, typescale-label-large-size)
+// 输出: font-size: var(--mdui-typescale-label-large-size, 0.875rem)
+.sys(@name, @value) {
+  @{name}: ~"var(--mdui-@{value})";
+}
+
+// 颜色值
+//
+// 输入: .color(on-primary, 30%, background-color)
+// 输出: background-color: rgb(var(--mdui-color-on-primary, 255, 255, 255))
+.color(@rgb, @opacity: 1, @name: color) {
+  @cssVariable: "--mdui-color-@{rgb}";
+
+  & when (@opacity =1) {
+    @{name}: ~"rgb(var(@{cssVariable}))";
+  }
+
+  & when not (@opacity =1) {
+    @{name}: ~"rgba(var(@{cssVariable}), @{opacity})";
+  }
+}
+
+.background-color(@rgb, @opacity: 1) {
+  .color(@rgb, @opacity, background-color);
+}
+
+.border-color(@rgb, @opacity: 1) {
+  .color(@rgb, @opacity, border-color);
+}
+
+.stroke(@rgb, @opacity: 1) {
+  .color(@rgb, @opacity, stroke);
+}
+
+.caret-color(@rgb, @opacity: 1) {
+  .color(@rgb, @opacity, caret-color);
+}
+
+// 设置边框
+//
+// 输入: .border(1px, solid, primary, border)
+// 输出: border: 1px solid rgb(103,80,164)
+//
+// 输入: .border(1px, solid, primary, 30%, border-top)
+// 输出: border-top: 1px solid rgba(103,80,164,30%)
+.border(@width, @style, @rgb, @opacity: 1, @name: border) {
+  @cssVariable: "--mdui-color-@{rgb}";
+
+  & when (@opacity =1) {
+    & when (isnumber(@width)) {
+      @widthRem: unit((@width / @mdui-root-font-size), rem);
+
+      @{name}: ~"@{widthRem} @{style} rgb(var(@{cssVariable}))";
+    }
+
+    & when not (isnumber(@width)) {
+      @{name}: ~"@{width} @{style} rgb(var(@{cssVariable}))";
+    }
+  }
+
+  & when not (@opacity =1) {
+    & when (isnumber(@width)) {
+      @widthRem: unit((@width / @mdui-root-font-size), rem);
+
+      @{name}: ~"@{widthRem} @{style} rgba(var(@{cssVariable}), @{opacity})";
+    }
+
+    & when not (isnumber(@width)) {
+      @{name}: ~"@{width} @{style} rgba(var(@{cssVariable}), @{opacity})";
+    }
+  }
+}
+
+.border-top(@width, @style, @rgb, @opacity: 1) {
+  .border(@width, @style, @rgb, @opacity, border-top);
+}
+
+.border-right(@width, @style, @rgb, @opacity: 1) {
+  .border(@width, @style, @rgb, @opacity, border-right);
+}
+
+.border-bottom(@width, @style, @rgb, @opacity: 1) {
+  .border(@width, @style, @rgb, @opacity, border-bottom);
+}
+
+.border-left(@width, @style, @rgb, @opacity: 1) {
+  .border(@width, @style, @rgb, @opacity, border-left);
+}
+
+.border-width(@width) {
+  .px(border-width, @width);
+}
+
+// 设置 border-radius
+//
+// 输入：.corner(medium)
+// 输出：border-radius: 0.75rem;
+.shape-corner(@value, @placement: null) {
+  @cssVariable: "--mdui-shape-corner-@{value}";
+
+  & when (@placement =null) {
+    border-radius: ~"var(@{cssVariable})";
+  }
+
+  & when (@placement =top) {
+    border-radius: ~"var(@{cssVariable}) var(@{cssVariable}) 0 0";
+  }
+
+  & when (@placement =bottom) {
+    border-radius: ~"0 0 var(@{cssVariable}) var(@{cssVariable})";
+  }
+
+  & when (@placement =start) {
+    border-radius: ~"var(@{cssVariable}) 0 0 var(@{cssVariable})";
+  }
+
+  & when (@placement =end) {
+    border-radius: ~"0 var(@{cssVariable}) var(@{cssVariable}) 0";
+  }
+
+  & when (@placement =top-start) {
+    border-top-left-radius: ~"var(@{cssVariable})";
+  }
+
+  & when (@placement = top-end) {
+    border-top-right-radius: ~"var(@{cssVariable})";
+  }
+
+  & when (@placement = bottom-start) {
+    border-bottom-left-radius: ~"var(@{cssVariable})";
+  }
+
+  & when (@placement = bottom-end) {
+    border-bottom-right-radius: ~"var(@{cssVariable})";
+  }
+}
+
+.border-radius(@value, @placement: null) {
+  & when (@placement =null) {
+    .px(border-radius, @value);
+  }
+
+  & when (@placement =top) {
+    .px(border-top-left-radius, @value);
+    .px(border-top-right-radius, @value);
+  }
+
+  & when (@placement =bottom) {
+    .px(border-bottom-right-radius, @value);
+    .px(border-bottom-left-radius, @value);
+  }
+
+  & when (@placement =start) {
+    .px(border-top-left-radius, @value);
+    .px(border-bottom-left-radius, @value);
+  }
+
+  & when (@placement =end) {
+    .px(border-top-right-radius, @value);
+    .px(border-bottom-right-radius, @value);
+  }
+}
+
+// padding 或 margin 值中的 px 转 rem。传 1 - 4 个参数都行
+//
+// 输入: .padding(24)
+// 输出: padding: 1.5rem
+.padding(@top, @right: null, @bottom: null, @left: null, @name: padding) {
+  & when (@right =null) and (@bottom =null) and (@left =null) {
+    @{name}: unit((@top / @mdui-root-font-size), rem);
+  }
+
+  & when (not(@right =null)) and (@bottom =null) and (@left =null) {
+    @{name}: unit((@top / @mdui-root-font-size), rem) unit((@right / @mdui-root-font-size), rem);
+  }
+
+  & when (not(@right =null)) and (not(@bottom =null)) and (@left =null) {
+    @{name}: unit((@top / @mdui-root-font-size), rem) unit((@right / @mdui-root-font-size), rem) unit((@bottom / @mdui-root-font-size), rem);
+  }
+
+  & when (not(@right =null)) and (not(@bottom =null)) and (not(@left =null)) {
+    @{name}: unit((@top / @mdui-root-font-size), rem) unit((@right / @mdui-root-font-size), rem) unit((@bottom / @mdui-root-font-size), rem) unit((@left / @mdui-root-font-size), rem);
+  }
+}
+
+.margin(@top, @right: null, @bottom: null, @left: null) {
+  .padding(@top, @right, @bottom, @left, margin);
+}
+
+.padding-top(@value) {
+  .px(padding-top, @value);
+}
+
+.padding-right(@value) {
+  .px(padding-right, @value);
+}
+
+.padding-bottom(@value) {
+  .px(padding-bottom, @value);
+}
+
+.padding-left(@value) {
+  .px(padding-left, @value);
+}
+
+.margin-top(@value) {
+  .px(margin-top, @value);
+}
+
+.margin-right(@value) {
+  .px(margin-right, @value);
+}
+
+.margin-bottom(@value) {
+  .px(margin-bottom, @value);
+}
+
+.margin-left(@value) {
+  .px(margin-left, @value);
+}
+
+// 设置 box-shadow，使用该 mixin 时，需要自行在元素上添加 transition-property: box-shadow
+.elevation(@value) {
+  .sys(box-shadow, ~"elevation-level@{value}");
+}
+
+.state-layer-color(@rgb) {
+  .sys(--mdui-comp-ripple-state-layer-color, ~"color-@{rgb}");
+}
+
+.translate(@x, @y) {
+  transform: translate(unit((@x / @mdui-root-font-size), rem), unit((@y / @mdui-root-font-size), rem));
+}
+
+.translate-x(@x) {
+  transform: translateX(unit((@x / @mdui-root-font-size), rem));
+}
+
+.translate-y(@y) {
+  transform: translateY(unit((@y / @mdui-root-font-size), rem));
+}
+
+.font-size(@value) {
+  & when (isnumber(@value)) {
+    .px(font-size, @value);
+  }
+
+  & when not (isnumber(@value)) {
+    .sys(font-size, ~"typescale-@{value}-size");
+  }
+}
+
+.font-weight(@value) {
+  .sys(font-weight, ~"typescale-@{value}-weight");
+}
+
+.letter-spacing(@value) {
+  .sys(letter-spacing, ~"typescale-@{value}-tracking");
+}
+
+.height(@value) {
+  .px(height, @value);
+}
+
+.line-height(@value) {
+  & when (isnumber(@value)) {
+    .px(line-height, @value);
+  }
+
+  & when not (isnumber(@value)) {
+    .sys(line-height, ~"typescale-@{value}-line-height");
+  }
+}
+
+.typescale(@name) {
+  .font-size(@name);
+  .font-weight(@name);
+  .letter-spacing(@name);
+  .line-height(@name);
+}
+
+.width(@value) {
+  .px(width, @value);
+}
+
+.min-width(@value) {
+  .px(min-width, @value);
+}
+
+.max-width(@value) {
+  .px(max-width, @value);
+}
+
+.min-height(@value) {
+  .px(min-height, @value);
+}
+
+.top(@value) {
+  .px(top, @value);
+}
+
+.right(@value) {
+  .px(right, @value);
+}
+
+.bottom(@value) {
+  .px(bottom, @value);
+}
+
+.left(@value) {
+  .px(left, @value);
+}
+
+.opacity(@value) {
+  .sys(opacity, ~"state-layer-@{value}");
+}
+
+.animation-timing-function(@value) {
+  .sys(animation-timing-function, ~"motion-easing-@{value}");
+}
+
+// 生成 transition
+//
+// @duration 为 short1、short2 等
+// @timing-function 为 standard、standard-accelerate、emphasized 等
+// @delay 可以为整数，表示毫秒；也可以为 short1、short2 等
+.transition(@prop, @duration, @timing-function, @delay: 0) {
+  @durationVariable: "--mdui-motion-duration-@{duration}";
+  @timingFunctionVariable: "--mdui-motion-easing-@{timing-function}";
+
+  & when (@delay = 0) {
+    transition: ~"@{prop} var(@{durationVariable}) var(@{timingFunctionVariable})";
+  }
+
+  & when not (@delay = 0) {
+    & when (isnumber(@delay)) {
+      transition: ~"@{prop} var(@{durationVariable}) var(@{timingFunctionVariable}) @{delay}ms";
+    }
+
+    & when not (isnumber(@delay)) {
+      transition: ~"@{prop} var(@{durationVariable}) var(@{timingFunctionVariable}) var(--mdui-motion-duration-@{delay})";
+    }
+  }
+}
+
+.transition-timing-function(@value) {
+  .sys(transition-timing-function, ~"motion-easing-@{value}");
+}
+
+.transition-duration(@value) {
+  .sys(transition-duration, ~"motion-duration-@{value}");
+}
+
+.transition-delay(@value) {
+  .sys(transition-delay, ~"motion-duration-@{value}");
+}

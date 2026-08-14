@@ -1,0 +1,34 @@
+<div class="figure-wrapper">
+  <figure
+    class="styled-example outlined"
+    title="Outlined select theming example"
+    aria-label="Image of an outlined select with a different theme applied"
+  >
+    <style>
+      .figure-wrapper figure {
+        padding-block: 16px;
+      }
+      .styled-example {
+        background-color: #f4fbfa;
+      }
+      .styled-example.outlined {
+        --md-outlined-select-text-field-outline-color: #6e7979;
+        --md-outlined-select-text-field-container-shape: 0px;
+        --md-outlined-select-text-field-input-text-color: #005353;
+        --md-outlined-select-text-field-input-text-font: system-ui;
+      }
+      .styled-example.outlined md-outlined-select::part(menu) {
+        --md-menu-container-color: #f4fbfa;
+        --md-menu-container-shape: 0px;
+      }
+    </style>
+    <md-outlined-select>
+      <md-select-option selected value="apple">
+        <div slot="headline">Apple</div>
+      </md-select-option>
+      <md-select-option value="tomato">
+        <div slot="headline">Tomato</div>
+      </md-select-option>
+    </md-outlined-select>
+  </figure>
+</div>

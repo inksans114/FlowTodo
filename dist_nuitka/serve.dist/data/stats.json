@@ -1,0 +1,14 @@
+{
+  "totalFocusSeconds": 1500,
+  "todayFocusSeconds": 1500,
+  "totalFocusSessions": 1,
+  "todayFocusSessions": 1,
+  "completedGroupSessions": 0,
+  "completedProjectSessions": 0,
+  "completedTimerSessions": 1,
+  "todayDate": "2026-07-07",
+  "lastFocusAt": "2026-07-07T10:18:53",
+  "dailyFocusSeconds": {
+    "2026-07-07": 1500
+  }
+}

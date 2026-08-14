@@ -1,0 +1,1 @@
+{"version":3,"file":"runtime-msg.d.ts","sourceRoot":"","sources":["../src/internal/runtime-msg.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAMH,OAAO,KAAK,EAAC,YAAY,EAAE,UAAU,EAAE,WAAW,EAAC,MAAM,YAAY,CAAC;AACtE,OAAO,KAAK,EAAC,cAAc,EAAC,MAAM,KAAK,CAAC;AAKxC,wBAAgB,UAAU,CACxB,SAAS,EAAE,WAAW,GAAG,SAAS,EAClC,QAAQ,EAAE,YAAY,EACtB,OAAO,EAAE,UAAU,GAAG,SAAS,GAC9B,MAAM,GAAG,cAAc,CA0CzB"}

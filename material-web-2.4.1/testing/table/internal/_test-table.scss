@@ -1,0 +1,108 @@
+//
+// Copyright 2021 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// stylelint-disable selector-class-pattern --
+// Selector '.md3-*' should only be used in this project.
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../../../color/color';
+@use '../../../tokens';
+// go/keep-sorted end
+
+$light-theme: tokens.md-comp-test-table-values();
+$dark-theme: tokens.md-comp-test-table-values(
+  (
+    'md-sys-color': tokens.md-sys-color-values-dark(),
+  )
+);
+
+@mixin theme($tokens) {
+  // $supported-tokens: tokens.$md-comp-test-table-supported-tokens;
+
+  @each $token, $value in $tokens {
+    // @if list.index($supported-tokens, $token) == null {
+    //   @error 'Token `#{$token}` is not a supported token.';
+    // }
+
+    @if $value {
+      --md-test-table-#{$token}: #{$value};
+    }
+  }
+}
+
+@mixin styles() {
+  $tokens: tokens.md-comp-test-table-values();
+
+  :host {
+    @each $token, $value in $tokens {
+      --_#{$token}: var(--md-test-table-#{$token}, #{$value});
+    }
+
+    display: flex;
+  }
+
+  .md3-test-table {
+    border: 1px solid;
+    border-collapse: collapse;
+  }
+
+  .md3-test-table__cell {
+    border: 1px solid;
+    padding: 16px;
+    position: var(--_cell-position);
+
+    &::before {
+      background-color: var(--_cell-color);
+      background-image: linear-gradient(
+          to right,
+          var(--_cell-grid-color) 1px,
+          transparent 1px
+        ),
+        linear-gradient(to bottom, var(--_cell-grid-color) 1px, transparent 1px);
+      background-size: 16px 16px;
+      inset: -1px 0 0 -1px;
+      content: '';
+      position: absolute;
+      z-index: -1;
+    }
+  }
+
+  .md3-test-table__header {
+    background: var(--_header-cell-color);
+    border: 1px solid;
+    border-top: none;
+    caption-side: bottom;
+    color: var(--_header-cell-text-color);
+    font-family: var(--_header-cell-text-font);
+    font-size: var(--_header-cell-text-size);
+    line-height: var(--_header-cell-text-line-height);
+    font-weight: var(--_header-cell-text-weight);
+    padding: 8px;
+  }
+
+  .md3-test-table__text {
+    align-items: center;
+    color: var(--_cell-text-color);
+    display: flex;
+    font-family: var(--_cell-text-font);
+    font-size: var(--_cell-text-size);
+    line-height: var(--_cell-text-line-height);
+    font-weight: var(--_cell-text-weight);
+    justify-content: center;
+  }
+
+  .md3-test-table,
+  .md3-test-table__cell,
+  .md3-test-table__header {
+    border-color: var(--_outline-color);
+  }
+
+  :host([dark]) {
+    @include color.dark-theme;
+  }
+}

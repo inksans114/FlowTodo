@@ -1,0 +1,3 @@
+/* Minimal outlined icons fallback */
+[class*="material-icons-outlined"]{font-family: sans-serif;}
+.material-icons-outlined{font-size:20px}
